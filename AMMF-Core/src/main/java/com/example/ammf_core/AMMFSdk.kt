@@ -1,6 +1,6 @@
 package com.example.ammf_core
 
-import com.example.ammf_core.performance.PerformanceManager
+import com.example.ammf_core.performancemanagement.PerformanceManager
 
 class AMMFSdk private constructor(
     val threadPoolSize: Int,

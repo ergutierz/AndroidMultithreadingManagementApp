@@ -20,11 +20,11 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 #this is the library that is used for the performance monitoring progaurd
--keepclassmembers class com.example.ammf_core.performance.MonitoringData {
+-keepclassmembers class com.example.ammf_core.performancemanagement.MonitoringData {
     *;
 }
 
--keepclassmembers class com.example.ammf_core.performance.ThreadData {
+-keepclassmembers class com.example.ammf_core.performancemanagement.ThreadData {
     *;
 }
 

@@ -26,7 +26,10 @@ project("ammf_core")
 # used in the AndroidManifest.xml file.
 add_library(${CMAKE_PROJECT_NAME} SHARED
         performance/performance_utility.cpp
-        performance_lib.cpp)
+        performance_lib.cpp
+        threading/thread_utility.cpp
+        thread_lib.cpp
+        data_structures/adaptive_queue.cpp)
 
 # Specifies libraries CMake should link to your target library. You
 # can link libraries from various origins, such as libraries defined in this

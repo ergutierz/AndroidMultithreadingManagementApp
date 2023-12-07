@@ -100,7 +100,7 @@ Java_com_example_ammf_1core_performance_PerformanceManager_getMonitoredData(JNIE
     }
 
     // Create MonitoringData object and set its fields
-    jclass monitoringDataClass = env->FindClass("com/example/ammf_core/performance/MonitoringData");
+    jclass monitoringDataClass = env->FindClass("com/example/ammf_core/performancemanagement/MonitoringData");
     jmethodID monitoringDataConstructor = env->GetMethodID(monitoringDataClass, "<init>",
                                                            "(Ljava/util/List;Ljava/util/List;Ljava/util/List;)V");
     jobject monitoringDataObject = env->NewObject(monitoringDataClass, monitoringDataConstructor,

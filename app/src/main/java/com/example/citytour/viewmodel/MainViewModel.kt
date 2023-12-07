@@ -2,7 +2,7 @@ package com.example.citytour.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ammf_core.performance.MonitoringData
+import com.example.ammf_core.performancemanagement.MonitoringData
 import com.example.citytour.model.Entry
 import com.example.citytour.model.MonitoringOption
 import com.example.citytour.repository.MainRepository

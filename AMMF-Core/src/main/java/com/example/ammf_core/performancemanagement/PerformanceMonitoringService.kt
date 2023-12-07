@@ -1,4 +1,4 @@
-package com.example.ammf_core.performance
+package com.example.ammf_core.performancemanagement
 
 import android.app.Service
 import android.content.Intent

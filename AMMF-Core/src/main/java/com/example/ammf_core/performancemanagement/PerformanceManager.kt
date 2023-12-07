@@ -1,4 +1,4 @@
-package com.example.ammf_core.performance
+package com.example.ammf_core.performancemanagement
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

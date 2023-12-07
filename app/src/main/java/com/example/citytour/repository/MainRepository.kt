@@ -6,8 +6,8 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import com.example.ammf_core.AMMFSdk
-import com.example.ammf_core.performance.MonitoringData
-import com.example.ammf_core.performance.PerformanceMonitoringService
+import com.example.ammf_core.performancemanagement.MonitoringData
+import com.example.ammf_core.performancemanagement.PerformanceMonitoringService
 import com.example.citytour.model.EntriesRequestResponse
 import com.example.citytour.remote.EntriesClient
 import dagger.hilt.android.qualifiers.ApplicationContext
