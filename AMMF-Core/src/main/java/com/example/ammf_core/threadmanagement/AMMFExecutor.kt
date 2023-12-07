@@ -5,9 +5,9 @@ import java.util.concurrent.Executor
 /**
  * Executor implementation that leverages the AMMF framework's thread management capabilities.
  */
-class AMMFExecutor : Executor {
+class AMMFExecutor(val isCpuIntensive: Boolean) : Executor {
 
-    private val threadManager: ThreadManager = AMMFThreadManager() // AMMF's thread manager
+    private val threadManager: ThreadManager = AMMFThreadManager()
 
     /**
      * Executes the given command at some time in the future using AMMF's thread management.
@@ -15,14 +15,13 @@ class AMMFExecutor : Executor {
      * @param command the runnable task
      */
     override fun execute(command: Runnable) {
-        threadManager.allocateThread(command)
+        threadManager.allocateThread(command, isCpuIntensive)
     }
 
     /**
      * Releases resources and threads managed by this executor.
      */
     fun shutdown() {
-        // Implement shutdown logic, if necessary
-        // Example: release all threads back to the thread pool
+        threadManager.shutdown()
     }
 }

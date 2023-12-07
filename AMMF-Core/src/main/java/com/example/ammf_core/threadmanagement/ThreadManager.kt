@@ -25,4 +25,10 @@ interface ThreadManager {
      * @param policy The scheduling policy, e.g., FIFO, Round-Robin.
      */
     fun setSchedulingPolicy(policy: SchedulingPolicy)
+
+    fun setThreadPriority(priority: Int)
+
+    fun allocateThread(runnable: Runnable, isCpuIntensive: Boolean)
+
+    fun shutdown()
 }

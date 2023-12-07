@@ -28,6 +28,7 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         performance/performance_utility.cpp
         performance_lib.cpp
         threading/thread_utility.cpp
+        threading/time_slice.cpp
         thread_lib.cpp
         data_structures/adaptive_queue.cpp)
 

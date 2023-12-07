@@ -18,42 +18,42 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
 
 extern "C"
 JNIEXPORT jdouble JNICALL
-Java_com_example_ammf_1core_performance_PerformanceManager_getCPUUtilization(JNIEnv *env,
+Java_com_example_ammf_1core_performancemanagement_PerformanceManager_getCPUUtilization(JNIEnv *env,
                                                                              jobject thiz) {
     return performance::performance_utility::getCPUUtilization();
 }
 
 extern "C"
 JNIEXPORT jdouble JNICALL
-Java_com_example_ammf_1core_performance_PerformanceManager_getMemoryUsage(JNIEnv *env,
+Java_com_example_ammf_1core_performancemanagement_PerformanceManager_getMemoryUsage(JNIEnv *env,
                                                                           jobject thiz) {
     return performance::performance_utility::getMemoryUsage();
 }
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_example_ammf_1core_performance_PerformanceManager_getThreadUsage(JNIEnv *env,
+Java_com_example_ammf_1core_performancemanagement_PerformanceManager_getThreadUsage(JNIEnv *env,
                                                                           jobject thiz) {
     return performance::performance_utility::getThreadUsage();
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_example_ammf_1core_performance_PerformanceManager_startMonitoring(JNIEnv *env,
+Java_com_example_ammf_1core_performancemanagement_PerformanceManager_startMonitoring(JNIEnv *env,
                                                                            jobject thiz) {
     performance::performance_utility::startMonitoring();
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_example_ammf_1core_performance_PerformanceManager_stopMonitoring(JNIEnv *env,
+Java_com_example_ammf_1core_performancemanagement_PerformanceManager_stopMonitoring(JNIEnv *env,
                                                                           jobject thiz) {
     performance::performance_utility::stopMonitoring();
 }
 
 extern "C"
 JNIEXPORT jobject JNICALL
-Java_com_example_ammf_1core_performance_PerformanceManager_getMonitoredData(JNIEnv *env,
+Java_com_example_ammf_1core_performancemanagement_PerformanceManager_getMonitoredData(JNIEnv *env,
                                                                             jobject thiz) {
     // Retrieve the MonitoringData from your C++ code
     const performance::MonitoringData &data = performance::performance_utility::getMonitoringData();
@@ -208,7 +208,7 @@ std::map<jobject, JavaMonitoringListener *> g_listenersMap;
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_example_ammf_1core_performance_PerformanceBinding_registerPerformanceListener(JNIEnv *env,
+Java_com_example_ammf_1core_performancemanagement_PerformanceBinding_registerPerformanceListener(JNIEnv *env,
                                                                                        jobject thiz) {
     if (g_listenersMap.find(thiz) == g_listenersMap.end()) {
         auto *javaListener = new JavaMonitoringListener(env, thiz);
@@ -240,7 +240,7 @@ Java_com_example_ammf_1core_performance_PerformanceBinding_registerPerformanceLi
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_example_ammf_1core_performance_PerformanceBinding_unregisterPerformanceListener(
+Java_com_example_ammf_1core_performancemanagement_PerformanceBinding_unregisterPerformanceListener(
         JNIEnv *env, jobject thiz) {
     jobject globalThiz = env->NewGlobalRef(thiz);
     if (g_listenersMap.find(globalThiz) != g_listenersMap.end()) {

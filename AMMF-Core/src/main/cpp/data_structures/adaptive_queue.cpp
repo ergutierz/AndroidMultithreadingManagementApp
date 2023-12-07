@@ -5,6 +5,7 @@
 #include <iostream>
 #include <deque>
 #include <mutex>
+#include <chrono>
 #include <condition_variable>
 #include <functional>
 #include <thread>
@@ -12,14 +13,10 @@
 
 namespace adaptive_queue {
 
-    Task::Task(std::function<void()> act, int priority) {
-        action = act;
-        this->priority = priority;
-        lastExecutionTime = std::chrono::steady_clock::now();
-    }
-
     void AdaptiveQueue::push(const Task& task) {
-        taskDeque.push_back(task);
+        auto position = std::find_if(taskDeque.begin(), taskDeque.end(),
+                                     [&task](const Task& t) { return t.estimatedDuration > task.estimatedDuration; });
+        taskDeque.insert(position, task);
     }
 
     Task AdaptiveQueue::pop() {
@@ -37,5 +34,21 @@ namespace adaptive_queue {
 
     size_t AdaptiveQueue::size() const {
         return taskDeque.size();
+    }
+
+    auto AdaptiveQueue::begin() -> decltype(taskDeque.begin()) {
+        return taskDeque.begin();
+    }
+
+    auto AdaptiveQueue::end() -> decltype(taskDeque.end()) {
+        return taskDeque.end();
+    }
+
+    void AdaptiveQueue::erase(typename std::deque<Task>::iterator it) {
+        taskDeque.erase(it);
+    }
+
+    void AdaptiveQueue::push_back(const Task& task) {
+        taskDeque.push_back(task);
     }
 }

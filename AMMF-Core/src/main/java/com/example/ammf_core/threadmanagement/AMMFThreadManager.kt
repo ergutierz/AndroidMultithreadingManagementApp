@@ -14,11 +14,26 @@ class AMMFThreadManager : ThreadManager {
     }
 
     override fun setSchedulingPolicy(policy: SchedulingPolicy) {
-        nativeSetSchedulingPolicy(policy.ordinal) // Assuming ordinal value of enum is used
+        nativeSetSchedulingPolicy(policy.ordinal)
+    }
+
+    override fun setThreadPriority(priority: Int) {
+        nativeSetThreadPriority(priority)
+    }
+
+    override fun allocateThread(runnable: Runnable, isCpuIntensive: Boolean) {
+        nativeAllocateThread(runnable, isCpuIntensive)
+    }
+
+    override fun shutdown() {
+        nativeShutdown()
     }
 
     // Native method declarations
     private external fun nativeInitializeThreadManager(threadCount: Int)
     private external fun nativeExecuteTask(task: Runnable)
     private external fun nativeSetSchedulingPolicy(policy: Int)
+    private external fun nativeSetThreadPriority(priority: Int)
+    private external fun nativeAllocateThread(runnable: Runnable, isCpuIntensive: Boolean)
+    private external fun nativeShutdown()
 }

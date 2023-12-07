@@ -9,6 +9,7 @@
 #include <deque>
 #include <condition_variable>
 #include "../data_structures/adaptive_queue.h"
+#include "time_slice.h"
 
 namespace threading {
 
@@ -19,12 +20,16 @@ namespace threading {
 
         void initializeThreadManager(int threadCount);
         void setThreadPriority(int priority);
-        void allocateThread(std::function<void()> task);
         void releaseThread(std::thread &thread);
         void setSchedulingPolicy(int policy);
         void nativeExecuteTask(std::function<void()> task);
 
+        void allocateThread(std::function<void()> task, bool isCpuIntensive);
+
+        void shutdown();
+
     private:
+        std::unique_ptr<time_slice::TimeSlicedPolicy> tsPolicy;
         adaptive_queue::AdaptiveQueue tasks;
         std::vector<std::thread> workers;
         std::mutex queueMutex;
@@ -45,6 +50,11 @@ namespace threading {
         void icpuIntensivePolicy();
         void applySchedulingPolicy(int policy);
         void errorHandler();
+
+        adaptive_queue::Task selectHighPriorityTask();
+
+        bool checkSystemLoad();
+
     };
 } // namespace threading
 
